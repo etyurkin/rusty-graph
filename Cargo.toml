@@ -52,6 +52,12 @@ tree-sitter-dart = "0.2"
 
 axum = "0.8.9"
 
+
+lisp-sitter-core = { path = "../lisp-sitter/crates/lisp-sitter-core" }
+lisp-sitter-elisp = { path = "../lisp-sitter/crates/lisp-sitter-elisp" }
+lisp-sitter-cl = { path = "../lisp-sitter/crates/lisp-sitter-cl" }
+lisp-sitter-scheme = { path = "../lisp-sitter/crates/lisp-sitter-scheme" }
+
 [dev-dependencies]
 tempfile = "3"
 

@@ -6,26 +6,50 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 
 ## Features
 
-- **Architecture report** — `rusty-graph arch` finds circular dependencies, hotspots, likely dead code
-- **Git-diff awareness** — `rusty-graph diff main` maps changed lines → symbols → blast radius
-- **Test-impact mapping** — `rusty-graph tests <symbol>` and `rusty-graph diff main --tests`
-- **Temporal coupling** — `rusty-graph cochange` mines git history for files that change together
-- **Graph export** — JSON, DOT, CSV, LSIF
-- **HTTP explorer** — `rusty-graph serve` with interactive graph UI
-- **LSP bridge** — `rusty-graph definition` for go-to-definition via language servers
+- **Tree-sitter parsing** for Rust, TypeScript/JavaScript, Python, and Go
+- **SQLite index** with FTS5 full-text search
+- **Cross-file reference resolution**
+- **MCP server** (stdio transport) exposing `rusty_graph_explore` + optional tools
+- **Incremental sync** and **file watcher**
+
+## Install
+
+```bash
+cargo install --path .
+```
 
 ## Usage
 
 ```bash
-rusty-graph arch
-rusty-graph diff main --tests
-rusty-graph cochange --min 3
-rusty-graph export --format dot > graph.dot
-rusty-graph serve --port 7878
+rusty-graph init /path/to/project
+rusty-graph explore "calculateTotal"
+rusty-graph mcp
+```
+
+## MCP Configuration
+
+```json
+{
+  "mcpServers": {
+    "rusty-graph": {
+      "command": "rusty-graph",
+      "args": ["mcp", "--path", "/path/to/project"]
+    }
+  }
+}
+```
+
+Optional tools via `RUSTY_GRAPH_MCP_TOOLS`:
+
+```json
+{
+  "env": {
+    "RUSTY_GRAPH_MCP_TOOLS": "rusty_graph_search,rusty_graph_callers,rusty_graph_impact"
+  }
+}
 ```
 
 ## Improvements over the original
 
-- **Test-impact from caller chain** — walks the call graph upward to find covering tests
-- **LSIF export** — interoperates with code-intel tooling
-- **Interactive HTTP explorer** — rank-sized nodes, cycle overlays, path tracing
+- **rmcp** — native Rust MCP server, no TypeScript SDK
+- **Opt-in tool surface** — only `rusty_graph_explore` enabled by default; extras require explicit opt-in
