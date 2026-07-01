@@ -6,8 +6,10 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 
 ## Features
 
-- **SQLite index** with WAL mode, FTS5 full-text search, and prepared statements
-- **Core graph model** — nodes (functions, classes, structs, …) and edges (calls, contains, imports, …)
+- **Tree-sitter parsing** for Rust, TypeScript/JavaScript, Python, and Go
+- **SQLite index** with FTS5 full-text search
+- **Cross-file reference resolution** — call edges connect callers to callees across files
+- **Parallel indexing** via rayon
 
 ## Install
 
@@ -15,17 +17,29 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 cargo install --path .
 ```
 
-## Architecture
+## Usage
 
+```bash
+rusty-graph init /path/to/project
+rusty-graph status
+rusty-graph query "MyFunction" --kind function
 ```
-tree-sitter parsers  →  extractors  →  SQLite (.rusty-graph/rusty-graph.db)
-                                          ├── nodes
-                                          ├── edges
-                                          ├── files (content hashes)
-                                          └── nodes_fts (FTS5)
-```
+
+## Supported Languages
+
+| Language | Functions | Classes/Structs | Call edges |
+|----------|-----------|-----------------|------------|
+| Rust     | ✓ | ✓ | ✓ |
+| TypeScript/JavaScript | ✓ | ✓ | ✓ |
+| Python   | ✓ | ✓ | ✓ |
+| Go       | ✓ | ✓ | ✓ |
+
+## Index Location
+
+`.rusty-graph/rusty-graph.db` inside the project root. Override with `RUSTY_GRAPH_DIR`.
 
 ## Improvements over the original
 
-- Bundled SQLite via `rusqlite` — no separate database install
-- FTS5 virtual table kept in sync on every index pass
+- **Parallel extraction** — files parsed concurrently with rayon
+- **blake3 hashing** — faster incremental sync than SHA-based change detection
+- **Kind-aware resolution** — call edges target functions/methods only, not same-named fields
