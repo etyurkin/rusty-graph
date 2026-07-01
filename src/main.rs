@@ -12,5 +12,9 @@ mod context;
 mod arch;
 mod gitdiff;
 mod testmap;
+mod cochange;
+mod export;
+mod serve;
+mod lsp;
 
 fn main() {}

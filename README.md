@@ -6,21 +6,26 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 
 ## Features
 
-- **17+ languages** including Ruby, C#, PHP, Swift, Kotlin, Dart, and Svelte/Vue
-- **Framework route recognition** — Express, FastAPI, Spring, Rails, Next.js, and more
-- **Semantic + fuzzy search** — FTS, trigram fuzzy matching, and offline embeddings
-- **Centrality ranking** — PageRank over the call graph
-- **Token-budgeted context packs** — `rusty-graph context "<task>" --budget N`
+- **Architecture report** — `rusty-graph arch` finds circular dependencies, hotspots, likely dead code
+- **Git-diff awareness** — `rusty-graph diff main` maps changed lines → symbols → blast radius
+- **Test-impact mapping** — `rusty-graph tests <symbol>` and `rusty-graph diff main --tests`
+- **Temporal coupling** — `rusty-graph cochange` mines git history for files that change together
+- **Graph export** — JSON, DOT, CSV, LSIF
+- **HTTP explorer** — `rusty-graph serve` with interactive graph UI
+- **LSP bridge** — `rusty-graph definition` for go-to-definition via language servers
 
 ## Usage
 
 ```bash
-rusty-graph query "validate token"
-rusty-graph context "how are orders validated" --budget 8000
+rusty-graph arch
+rusty-graph diff main --tests
+rusty-graph cochange --min 3
+rusty-graph export --format dot > graph.dot
+rusty-graph serve --port 7878
 ```
 
 ## Improvements over the original
 
-- **No model download** — hashed bag-of-subtokens embeddings run fully offline
-- **Route nodes** — HTTP endpoints indexed as first-class symbols linked to handlers
-- **Import-hint resolution** — qualified names and import aliases improve cross-file call linking
+- **Test-impact from caller chain** — walks the call graph upward to find covering tests
+- **LSIF export** — interoperates with code-intel tooling
+- **Interactive HTTP explorer** — rank-sized nodes, cycle overlays, path tracing
