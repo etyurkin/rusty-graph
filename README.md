@@ -2,16 +2,30 @@
 
 A Rust reimplementation of the [codegraph](https://github.com/colbymchenry/codegraph) idea — a local code knowledge graph for AI coding agents.
 
-**Influence:** [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) pioneered the pattern: parse a codebase with tree-sitter, store symbols and relationships in SQLite, expose the graph over MCP so agents can understand structure in one call instead of dozens of file reads. rusty-graph keeps that architecture but rewrites it in Rust for a single static binary with no Node.js runtime.
+Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph); rewritten in Rust for a single static binary with no Node.js runtime.
 
-## Status
+## Features
 
-Early scaffold — core types and database layer next.
+- **SQLite index** with WAL mode, FTS5 full-text search, and prepared statements
+- **Core graph model** — nodes (functions, classes, structs, …) and edges (calls, contains, imports, …)
 
-## Planned improvements over the original
+## Install
 
-- **Single static binary** — no Node.js/npm install, ~9 MB release build with parsers linked in
-- **Parallel indexing** — rayon-backed extraction across files
-- **Faster change detection** — blake3 content hashing instead of SHA
-- **Broader language coverage** — Lisp family via lisp-sitter, Kotlin, Dart, Svelte/Vue, and more
-- **Richer agent tooling** — token-budgeted context packs, architecture reports, git-diff blast radius, test-impact mapping
+```bash
+cargo install --path .
+```
+
+## Architecture
+
+```
+tree-sitter parsers  →  extractors  →  SQLite (.rusty-graph/rusty-graph.db)
+                                          ├── nodes
+                                          ├── edges
+                                          ├── files (content hashes)
+                                          └── nodes_fts (FTS5)
+```
+
+## Improvements over the original
+
+- Bundled SQLite via `rusqlite` — no separate database install
+- FTS5 virtual table kept in sync on every index pass
