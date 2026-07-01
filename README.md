@@ -8,8 +8,10 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 
 - **Tree-sitter parsing** for Rust, TypeScript/JavaScript, Python, and Go
 - **SQLite index** with FTS5 full-text search
-- **Cross-file reference resolution** — call edges connect callers to callees across files
-- **Parallel indexing** via rayon
+- **Cross-file reference resolution**
+- **Graph traversal** — explore, callers/callees, blast-radius impact, call-path search
+- **Incremental sync** — content-hash based; only re-indexes changed files
+- **File watcher** — debounced auto-sync on save
 
 ## Install
 
@@ -22,24 +24,17 @@ cargo install --path .
 ```bash
 rusty-graph init /path/to/project
 rusty-graph status
-rusty-graph query "MyFunction" --kind function
+rusty-graph query "MyFunction"
+rusty-graph explore "calculateTotal"
+rusty-graph callers "handleRequest"
+rusty-graph impact "processOrder" --depth 5
+rusty-graph path "handleRequest" "writeToDb"
+rusty-graph sync
+rusty-graph watch
 ```
-
-## Supported Languages
-
-| Language | Functions | Classes/Structs | Call edges |
-|----------|-----------|-----------------|------------|
-| Rust     | ✓ | ✓ | ✓ |
-| TypeScript/JavaScript | ✓ | ✓ | ✓ |
-| Python   | ✓ | ✓ | ✓ |
-| Go       | ✓ | ✓ | ✓ |
-
-## Index Location
-
-`.rusty-graph/rusty-graph.db` inside the project root. Override with `RUSTY_GRAPH_DIR`.
 
 ## Improvements over the original
 
-- **Parallel extraction** — files parsed concurrently with rayon
-- **blake3 hashing** — faster incremental sync than SHA-based change detection
-- **Kind-aware resolution** — call edges target functions/methods only, not same-named fields
+- **Deterministic explore output** — stable file ordering (BTreeMap) for reproducible agent context
+- **Watcher resolves edges** — incremental updates rebuild call graph and FTS, not just raw nodes
+- **Single-process design** — no daemon socket complexity
