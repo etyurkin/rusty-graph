@@ -6,35 +6,47 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 
 ## Features
 
-- **Tree-sitter parsing** for Rust, TypeScript/JavaScript, Python, and Go
+- **Tree-sitter parsing** for Rust, TS/JS, Python, Go, Java, C/C++, Emacs Lisp, Common Lisp, and Scheme
 - **SQLite index** with FTS5 full-text search
 - **Cross-file reference resolution**
-- **Graph traversal** — explore, callers/callees, blast-radius impact, call-path search
-- **Incremental sync** — content-hash based; only re-indexes changed files
-- **File watcher** — debounced auto-sync on save
-
-## Install
-
-```bash
-cargo install --path .
-```
+- **MCP server** with `rusty_graph_explore`
+- **Incremental sync**, **file watcher**, **deleted-file pruning**
+- **Configuration** via `.rusty-graph/config.json` and `.rusty-graphignore`
 
 ## Usage
 
 ```bash
 rusty-graph init /path/to/project
-rusty-graph status
-rusty-graph query "MyFunction"
-rusty-graph explore "calculateTotal"
-rusty-graph callers "handleRequest"
-rusty-graph impact "processOrder" --depth 5
-rusty-graph path "handleRequest" "writeToDb"
-rusty-graph sync
 rusty-graph watch
+rusty-graph sync
+```
+
+## Supported Languages
+
+| Language | Functions | Classes/Structs | Call edges |
+|----------|-----------|-----------------|------------|
+| Rust     | ✓ | ✓ | ✓ |
+| TypeScript/JavaScript | ✓ | ✓ | ✓ |
+| Python   | ✓ | ✓ | ✓ |
+| Go       | ✓ | ✓ | ✓ |
+| Java     | ✓ | ✓ | ✓ |
+| C/C++    | ✓ | ✓ | ✓ |
+| Emacs Lisp | ✓ | ✓ | ✓ |
+| Common Lisp | ✓ | ✓ | ✓ |
+| Scheme   | ✓ | ✓ | ✓ |
+
+## Configuration
+
+```json
+{
+  "max_file_size": 1048576,
+  "disabled_languages": ["scheme"],
+  "extra_roots": ["vendor"]
+}
 ```
 
 ## Improvements over the original
 
-- **Deterministic explore output** — stable file ordering (BTreeMap) for reproducible agent context
-- **Watcher resolves edges** — incremental updates rebuild call graph and FTS, not just raw nodes
-- **Single-process design** — no daemon socket complexity
+- **C/C++ header disambiguation** — `.h` files classified as C or C++ from content
+- **Prune-on-sync** — deleted files removed from the index automatically
+- **Affected-edge recomputation** — incremental sync refreshes cross-file edges for changed files only
