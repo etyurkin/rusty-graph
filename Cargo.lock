@@ -292,49 +292,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
 
 [[package]]
-name = "codegraph"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "axum",
- "blake3",
- "clap",
- "ignore",
- "lisp-sitter-cl",
- "lisp-sitter-core",
- "lisp-sitter-elisp",
- "lisp-sitter-scheme",
- "notify-debouncer-mini",
- "rayon",
- "rmcp",
- "rusqlite",
- "serde",
- "serde_json",
- "tempfile",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "tree-sitter",
- "tree-sitter-c",
- "tree-sitter-c-sharp",
- "tree-sitter-commonlisp",
- "tree-sitter-cpp",
- "tree-sitter-dart",
- "tree-sitter-elisp",
- "tree-sitter-go",
- "tree-sitter-java",
- "tree-sitter-javascript",
- "tree-sitter-kotlin-ng",
- "tree-sitter-php",
- "tree-sitter-python",
- "tree-sitter-ruby",
- "tree-sitter-rust",
- "tree-sitter-scheme",
- "tree-sitter-swift",
- "tree-sitter-typescript",
-]
-
-[[package]]
 name = "colorchoice"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1235,6 +1192,49 @@ name = "rustversion"
 version = "1.0.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
+
+[[package]]
+name = "rusty-graph"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "blake3",
+ "clap",
+ "ignore",
+ "lisp-sitter-cl",
+ "lisp-sitter-core",
+ "lisp-sitter-elisp",
+ "lisp-sitter-scheme",
+ "notify-debouncer-mini",
+ "rayon",
+ "rmcp",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+ "tree-sitter",
+ "tree-sitter-c",
+ "tree-sitter-c-sharp",
+ "tree-sitter-commonlisp",
+ "tree-sitter-cpp",
+ "tree-sitter-dart",
+ "tree-sitter-elisp",
+ "tree-sitter-go",
+ "tree-sitter-java",
+ "tree-sitter-javascript",
+ "tree-sitter-kotlin-ng",
+ "tree-sitter-php",
+ "tree-sitter-python",
+ "tree-sitter-ruby",
+ "tree-sitter-rust",
+ "tree-sitter-scheme",
+ "tree-sitter-swift",
+ "tree-sitter-typescript",
+]
 
 [[package]]
 name = "ryu"
