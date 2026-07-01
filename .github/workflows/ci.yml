@@ -16,10 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Checkout lisp-sitter (path dependency)
-        uses: actions/checkout@v4
-        with:
-          repository: etyurkin/lisp-sitter
-          path: ../lisp-sitter
+        run: git clone --depth 1 https://github.com/${{ github.repository_owner }}/lisp-sitter.git ../lisp-sitter
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
