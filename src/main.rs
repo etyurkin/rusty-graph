@@ -6,5 +6,7 @@ mod config;
 mod extract;
 mod indexer;
 mod graph;
+mod sync;
+mod term;
 
 fn main() {}
