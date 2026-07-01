@@ -8,5 +8,9 @@ mod indexer;
 mod graph;
 mod sync;
 mod term;
+mod context;
+mod arch;
+mod gitdiff;
+mod testmap;
 
 fn main() {}

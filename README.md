@@ -6,47 +6,21 @@ Inspired by [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph);
 
 ## Features
 
-- **Tree-sitter parsing** for Rust, TS/JS, Python, Go, Java, C/C++, Emacs Lisp, Common Lisp, and Scheme
-- **SQLite index** with FTS5 full-text search
-- **Cross-file reference resolution**
-- **MCP server** with `rusty_graph_explore`
-- **Incremental sync**, **file watcher**, **deleted-file pruning**
-- **Configuration** via `.rusty-graph/config.json` and `.rusty-graphignore`
+- **17+ languages** including Ruby, C#, PHP, Swift, Kotlin, Dart, and Svelte/Vue
+- **Framework route recognition** — Express, FastAPI, Spring, Rails, Next.js, and more
+- **Semantic + fuzzy search** — FTS, trigram fuzzy matching, and offline embeddings
+- **Centrality ranking** — PageRank over the call graph
+- **Token-budgeted context packs** — `rusty-graph context "<task>" --budget N`
 
 ## Usage
 
 ```bash
-rusty-graph init /path/to/project
-rusty-graph watch
-rusty-graph sync
-```
-
-## Supported Languages
-
-| Language | Functions | Classes/Structs | Call edges |
-|----------|-----------|-----------------|------------|
-| Rust     | ✓ | ✓ | ✓ |
-| TypeScript/JavaScript | ✓ | ✓ | ✓ |
-| Python   | ✓ | ✓ | ✓ |
-| Go       | ✓ | ✓ | ✓ |
-| Java     | ✓ | ✓ | ✓ |
-| C/C++    | ✓ | ✓ | ✓ |
-| Emacs Lisp | ✓ | ✓ | ✓ |
-| Common Lisp | ✓ | ✓ | ✓ |
-| Scheme   | ✓ | ✓ | ✓ |
-
-## Configuration
-
-```json
-{
-  "max_file_size": 1048576,
-  "disabled_languages": ["scheme"],
-  "extra_roots": ["vendor"]
-}
+rusty-graph query "validate token"
+rusty-graph context "how are orders validated" --budget 8000
 ```
 
 ## Improvements over the original
 
-- **C/C++ header disambiguation** — `.h` files classified as C or C++ from content
-- **Prune-on-sync** — deleted files removed from the index automatically
-- **Affected-edge recomputation** — incremental sync refreshes cross-file edges for changed files only
+- **No model download** — hashed bag-of-subtokens embeddings run fully offline
+- **Route nodes** — HTTP endpoints indexed as first-class symbols linked to handlers
+- **Import-hint resolution** — qualified names and import aliases improve cross-file call linking
