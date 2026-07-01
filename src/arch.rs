@@ -158,7 +158,7 @@ pub fn report(db: &Db, root: &str) -> Result<ArchReport> {
             fan_out: fan_out[i],
         })
         .collect();
-    hotspots.sort_by(|a, b| (b.fan_in + b.fan_out).cmp(&(a.fan_in + a.fan_out)));
+    hotspots.sort_by_key(|b| std::cmp::Reverse(b.fan_in + b.fan_out));
     hotspots.truncate(MAX_HOTSPOTS);
 
     // Orphans: callable, uncalled, not exported / test / entry point, and inside
