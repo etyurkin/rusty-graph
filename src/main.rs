@@ -1,1 +1,3 @@
-fn main() { eprintln!("rusty-graph"); }
+mod types;
+
+fn main() {}
