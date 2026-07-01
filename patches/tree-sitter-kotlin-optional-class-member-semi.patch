@@ -1,0 +1,21 @@
+diff --git a/grammar.js b/grammar.js
+--- a/grammar.js
++++ b/grammar.js
+@@ -392,7 +392,7 @@ module.exports = grammar({
+ 
+     class_body: $ => seq(
+       '{',
+-      repeat(seq($.class_member_declaration, $._class_member_semi)),
++      repeat(seq($.class_member_declaration, optional($._class_member_semi))),
+       '}',
+     ),
+ 
+@@ -408,7 +408,7 @@ module.exports = grammar({
+       optionalCommaSep1($.enum_entry),
+       optional(seq(
+         ';',
+-        repeat(seq($.class_member_declaration, $._class_member_semi)),
++        repeat(seq($.class_member_declaration, optional($._class_member_semi))),
+       )),
+       '}',
+     ),

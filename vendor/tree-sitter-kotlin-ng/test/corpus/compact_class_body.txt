@@ -1,0 +1,22 @@
+==================
+Compact class body without newlines
+==================
+
+class Db { fun open() {} fun run() {} }
+
+---
+
+(source_file
+  (class_declaration
+    name: (identifier)
+    (class_body
+      (function_declaration
+        name: (identifier)
+        (function_value_parameters)
+        (function_body
+          (block)))
+      (function_declaration
+        name: (identifier)
+        (function_value_parameters)
+        (function_body
+          (block))))))
