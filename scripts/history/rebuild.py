@@ -149,10 +149,10 @@ tree-sitter-dart = "0.2"
 """,
     "serve": 'axum = "0.8.9"\n',
     "lisp_sitter": """
-lisp-sitter-core = { path = "../lisp-sitter/crates/lisp-sitter-core" }
-lisp-sitter-elisp = { path = "../lisp-sitter/crates/lisp-sitter-elisp" }
-lisp-sitter-cl = { path = "../lisp-sitter/crates/lisp-sitter-cl" }
-lisp-sitter-scheme = { path = "../lisp-sitter/crates/lisp-sitter-scheme" }
+lisp-sitter-core = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
+lisp-sitter-elisp = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
+lisp-sitter-cl = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
+lisp-sitter-scheme = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
 """,
 }
 

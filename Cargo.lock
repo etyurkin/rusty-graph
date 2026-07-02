@@ -701,9 +701,9 @@ checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
 
 [[package]]
 name = "ignore"
-version = "0.4.26"
+version = "0.4.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b915661dd01db3f05050265b2477bcc6527b3792388e2749b41623cc592be67d"
+checksum = "fe112b004901c62c2faa11f4f75e9864e0cc5af8da71c9115d184a3aa888749f"
 dependencies = [
  "crossbeam-deque",
  "globset",
@@ -738,9 +738,9 @@ dependencies = [
 
 [[package]]
 name = "inotify-sys"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e05c02b5e89bff3b946cedeca278abc628fe811e604f027c45a8aa3cf793d0eb"
+checksum = "6fda9741ca16536952da2ecaa6105c2f4653fa6f0724681df6d2414c4106d0b0"
 dependencies = [
  "libc",
 ]
@@ -820,6 +820,7 @@ checksum = "32a66949e030da00e8c7d4434b251670a91556f4144941d37452769c25d58a53"
 [[package]]
 name = "lisp-sitter-cl"
 version = "0.1.0"
+source = "git+https://github.com/etyurkin/lisp-sitter?rev=fa7adb29ffc2bf9d0add01aa2e3ad5108f318192#fa7adb29ffc2bf9d0add01aa2e3ad5108f318192"
 dependencies = [
  "lisp-sitter-core",
  "tree-sitter",
@@ -829,6 +830,7 @@ dependencies = [
 [[package]]
 name = "lisp-sitter-core"
 version = "0.1.0"
+source = "git+https://github.com/etyurkin/lisp-sitter?rev=fa7adb29ffc2bf9d0add01aa2e3ad5108f318192#fa7adb29ffc2bf9d0add01aa2e3ad5108f318192"
 dependencies = [
  "serde",
  "thiserror",
@@ -838,6 +840,7 @@ dependencies = [
 [[package]]
 name = "lisp-sitter-elisp"
 version = "0.1.0"
+source = "git+https://github.com/etyurkin/lisp-sitter?rev=fa7adb29ffc2bf9d0add01aa2e3ad5108f318192#fa7adb29ffc2bf9d0add01aa2e3ad5108f318192"
 dependencies = [
  "lisp-sitter-core",
  "tree-sitter",
@@ -847,6 +850,7 @@ dependencies = [
 [[package]]
 name = "lisp-sitter-scheme"
 version = "0.1.0"
+source = "git+https://github.com/etyurkin/lisp-sitter?rev=fa7adb29ffc2bf9d0add01aa2e3ad5108f318192#fa7adb29ffc2bf9d0add01aa2e3ad5108f318192"
 dependencies = [
  "lisp-sitter-core",
  "tree-sitter",
@@ -1195,7 +1199,7 @@ checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
 
 [[package]]
 name = "rusty-graph"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "axum",

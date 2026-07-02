@@ -44,9 +44,39 @@ Parses your codebase with tree-sitter, stores nodes and edges in SQLite, and exp
 
 ## Install
 
+### Prebuilt binaries (recommended)
+
+Download the latest release for your platform from
+[GitHub Releases](https://github.com/etyurkin/rusty-graph/releases), make the binary executable, and put it on your `PATH`:
+
+| Asset | Platform |
+|-------|----------|
+| `rusty-graph-linux-x86_64` | Linux x86_64 (static musl) |
+| `rusty-graph-macos-x86_64` | macOS Intel |
+| `rusty-graph-macos-aarch64` | macOS Apple Silicon |
+
 ```bash
+chmod +x rusty-graph-*
+sudo mv rusty-graph-* /usr/local/bin/rusty-graph
+```
+
+### Install from source
+
+```bash
+cargo install --git https://github.com/etyurkin/rusty-graph --tag v1.0.1
+```
+
+Or clone and build locally:
+
+```bash
+git clone https://github.com/etyurkin/rusty-graph.git
+cd rusty-graph
 cargo install --path .
 ```
+
+`lisp-sitter` is fetched automatically as a git dependency — no sibling checkout required.
+
+> **Note:** `cargo install rusty-graph` from [crates.io](https://crates.io) is not supported yet because the vendored Kotlin grammar is a path dependency. Use GitHub releases or `cargo install --git` instead.
 
 ## Usage
 
@@ -116,6 +146,21 @@ tree-sitter + lisp-sitter parsers
 ## Framework Route Recognition
 
 HTTP endpoints from Express, FastAPI, Spring, Rails, Next.js, Django, and other common frameworks are indexed as `route` nodes linked to handlers.
+
+## Migrating from codegraph
+
+rusty-graph supersedes the older `codegraph-rust` port. If you used [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) (TypeScript), indexes are **not** compatible — re-index your project:
+
+```bash
+rusty-graph init /path/to/project
+```
+
+| codegraph (TypeScript) | rusty-graph |
+|------------------------|-------------|
+| `.codegraph/codegraph.db` | `.rusty-graph/rusty-graph.db` |
+| `CODEGRAPH_DIR` | `RUSTY_GRAPH_DIR` |
+| `codegraph_explore` (MCP) | `rusty_graph_explore` |
+| `codegraph` binary | `rusty-graph` binary |
 
 ## Index Location
 

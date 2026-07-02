@@ -1,9 +1,14 @@
 [package]
 name = "rusty-graph"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 description = "Local code knowledge graph for AI coding agents"
 license = "MIT"
+readme = "README.md"
+repository = "https://github.com/etyurkin/rusty-graph"
+homepage = "https://github.com/etyurkin/rusty-graph"
+keywords = ["code-intelligence", "tree-sitter", "mcp", "static-analysis", "ai-agents"]
+authors = ["Evgeniy Tyurkin"]
 
 [[bin]]
 name = "rusty-graph"
@@ -53,10 +58,10 @@ tree-sitter-dart = "0.2"
 axum = "0.8.9"
 
 
-lisp-sitter-core = { path = "../lisp-sitter/crates/lisp-sitter-core" }
-lisp-sitter-elisp = { path = "../lisp-sitter/crates/lisp-sitter-elisp" }
-lisp-sitter-cl = { path = "../lisp-sitter/crates/lisp-sitter-cl" }
-lisp-sitter-scheme = { path = "../lisp-sitter/crates/lisp-sitter-scheme" }
+lisp-sitter-core = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
+lisp-sitter-elisp = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
+lisp-sitter-cl = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
+lisp-sitter-scheme = { git = "https://github.com/etyurkin/lisp-sitter", rev = "fa7adb29ffc2bf9d0add01aa2e3ad5108f318192" }
 
 [dev-dependencies]
 tempfile = "3"
