@@ -71,8 +71,20 @@ Or clone and build locally:
 ```bash
 git clone https://github.com/etyurkin/rusty-graph.git
 cd rusty-graph
-cargo install --path .
+make install
 ```
+
+`make help` lists all targets. Common ones:
+
+| Target | Description |
+|--------|-------------|
+| `make install` | Release build and install to `~/.cargo/bin` |
+| `make release` | Build optimized binary to `target/release/rusty-graph` |
+| `make test` | Run tests |
+| `make ci` | Lint + test (same as GitHub Actions) |
+| `make clean` | Remove `target/` |
+
+Equivalent without Make: `cargo install --path .`
 
 `lisp-sitter` is fetched automatically as a git dependency — no sibling checkout required.
 
